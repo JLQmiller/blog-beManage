@@ -1,0 +1,41 @@
+<form
+  #loginForm="ngForm"
+  class="login-info"
+  [formGroup]="profileForm"
+  (ngSubmit)="onSubmit()"
+>
+  <mat-form-field required>
+    <input
+      matInput
+      name="username"
+      placeholder="用户名"
+      [(ngModel)]='user.username'
+      (ngModelChange)='changed()'
+      minlength="4"
+      appForbiddenName='admin'
+      required
+      formControlName="username"
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      #password
+      name="password"
+      placeholder="请输入密码"
+      [type]='hide ? "password" : "text"'
+      [(ngModel)]="user.password"
+      (ngModelChange)='changed()'
+      required
+      formControlName="password"
+    >
+    <mat-icon matSuffix (click)="hide=!hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <mat-error *ngIf='password.touched && password.invalid'>{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+  <button
+    mat-raised-button
+    color='primary'
+    [disabled]='loginForm.form.invalid'
+    type="submit"
+  >登陆</button>
+</form>
