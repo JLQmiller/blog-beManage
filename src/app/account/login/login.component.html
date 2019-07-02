@@ -11,7 +11,6 @@
       placeholder="用户名"
       [(ngModel)]='user.username'
       (ngModelChange)='changed()'
-      minlength="4"
       appForbiddenName='admin'
       required
       formControlName="username"
@@ -38,4 +37,7 @@
     [disabled]='loginForm.form.invalid'
     type="submit"
   >登陆</button>
+
 </form>
+
+

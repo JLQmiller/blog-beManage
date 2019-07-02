@@ -13,8 +13,10 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { } from '../../shared';
-import { User } from '../login.model';
+import { Router } from '@angular/router';
+
+import { AccountService } from '../account.service';
+import { User } from '../account.models';
 
 interface Http {
   username: string;
@@ -32,6 +34,22 @@ export class LoginComponent implements OnInit, AfterViewInit {
   @ViewChild('password', { static: true }) password: FormControl;
 
   hide = true;
+   markdown = `## Markdown __rulez__!
+    ---
+
+    ### Syntax highlight
+    \`\`\`typescript
+    const language = 'typescript';
+    \`\`\`
+
+    ### Lists
+    1. Ordered list
+    2. Another bullet point
+      - Unordered list
+      - Another unordered bullet point
+
+    ### Blockquote
+    > Blockquote to the max`;
 
   // profileForm = new FormGroup({
   //   username: new FormControl('jlq'),
@@ -60,10 +78,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   httpResult: Http;
 
-  user = new User('', '');
+  user = new User;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private accountService: AccountService,
+    private router: Router,
   ) { }
 
   get aliases() {
@@ -99,12 +119,17 @@ export class LoginComponent implements OnInit, AfterViewInit {
       username: this.profileForm.value.username,
       password: this.profileForm.value.password,
     };
-    console.log(this.profileForm.value);
-    this.profileForm.patchValue({
-      username: 'killer',
-      address: {
-        zip: '111',
-      },
+    this.user = {
+      username: this.profileForm.value.username,
+      password: this.profileForm.value.password,
+    };
+    // console.log(this.profileForm.value);
+    // console.log(this.user);
+    // this.accountService.login({username:'jlq', password: 'kkkk'});
+    this.accountService.login(this.user)
+    .subscribe(res => {
+      console.log(res);
+      this.router.navigate(['./']);
     });
   }
 

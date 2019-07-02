@@ -1,7 +1,10 @@
 {
-  "/api": {
+  "/users": {
     "target": "http://localhost:8888",
     "secure": false,
-    "changeOrigin": true
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "logLevel": "debug"
   }
 }

@@ -47,8 +47,11 @@ export class ApiService {
   }
 
   post(url: string, body: Object = {}): Observable<any> {
+    console.log('yellow dead')
+    // console.log(this.makeUrl(url));
     return this.http.post(
-      this.makeUrl(url),
+      url,
+      // this.makeUrl(url),
       JSON.stringify(body),
       {headers: this.headers},
     ).pipe(
