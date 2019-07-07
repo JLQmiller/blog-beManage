@@ -1,3 +1,12 @@
-<p>
-  sidenav-item works!
-</p>
+<svg class="icon" *ngIf="icon" [suiIcon]="icon" color="light"></svg>
+<ng-container *ngIf="sideNavItemTemplate">
+  <ng-container *ngTemplateOutlet="sideNavItemTemplate; context: context"></ng-container>
+</ng-container>
+<ng-container *ngIf="!sideNavItemTemplate">
+  <!-- 侧边栏折叠时，文本内容不显示 -->
+  <div *ngIf="!collapsed" class="content">
+    <ng-content></ng-content>
+  </div>
+</ng-container>
+
+<svg class="icon" *ngIf="icon" [blogIcon]></svg>
