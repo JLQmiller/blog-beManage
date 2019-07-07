@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SidenavItemGroupComponent } from './sidenav-item-group.component';
+import { IconSymbolComponent } from './icon-symbol.component';
 
-describe('SidenavItemGroupComponent', () => {
-  let component: SidenavItemGroupComponent;
-  let fixture: ComponentFixture<SidenavItemGroupComponent>;
+describe('IconSymbolComponent', () => {
+  let component: IconSymbolComponent;
+  let fixture: ComponentFixture<IconSymbolComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidenavItemGroupComponent ]
+      declarations: [ IconSymbolComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SidenavItemGroupComponent);
+    fixture = TestBed.createComponent(IconSymbolComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

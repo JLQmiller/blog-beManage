@@ -1,0 +1,16 @@
+<ng-container *ngIf="sideNavHeadTemplate">
+  <!-- 侧边栏头 -->
+  <ng-container *ngTemplateOutlet="sideNavHeadTemplate; context: context"></ng-container>
+</ng-container>
+<div class="blog-sideNav-title" *ngIf="sideNavTitle">
+  {{blog-sideNav-title}}
+</div>
+<div class="blog-sideNav-body">
+  <ng-content></ng-content>
+  <ng-container *ngIf="sideNavTemplate">
+    <ng-container *ngTemplateOutlet="sideNavTemplate; context: context"></ng-container>
+  </ng-container>
+</div>
+<div class="blog-sideNav-foot" (click)="toggle()">
+  <svg suiIcon="nav"></svg>
+</div>

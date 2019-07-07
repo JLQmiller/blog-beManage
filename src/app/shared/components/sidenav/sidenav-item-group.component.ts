@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
+import { SidenavComponent } from './sidenav.component';
 
 @Component({
   selector: 'blog-sidenav-item-group',
   templateUrl: './sidenav-item-group.component.html',
-  styleUrls: ['./sidenav-item-group.component.sass']
 })
-export class SidenavItemGroupComponent implements OnInit {
+export class SidenavItemGroupComponent {
+  @HostBinding('class.sui-side-nav-item-group') hostClass = true;
 
-  constructor() { }
-
-  ngOnInit() {
+  @HostBinding('class.collapsed') get collapsedClass() {
+    return this.sideNav.collapsed;
   }
+
+  @Input() sideNavTitle: string;
+
+  constructor(
+    private sideNav: SidenavComponent,
+  ) { }
 
 }
