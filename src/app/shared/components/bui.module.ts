@@ -1,11 +1,11 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { IconModule } from './icon/icon.module';
-import { SideNavModule } from './sidenav/sidenav.module';
+// import { SideNavModule } from './sidenav/sidenav.module';
 
 const BUI_MODULES = [
   IconModule,
-  SideNavModule,
+  // SideNavModule,
 ];
 
 @NgModule({

@@ -21,7 +21,7 @@ export class ApiService {
 
   // 拼凑url字符串
   makeUrl(url) {
-    return path.join(environment.apiUrl, url);
+    // return path.join(environment.apiUrl, url);
   }
 
   // 构造请求头
