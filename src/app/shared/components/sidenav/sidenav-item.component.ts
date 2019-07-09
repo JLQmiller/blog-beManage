@@ -27,7 +27,8 @@ export class SidenavItemComponent implements OnInit, OnDestroy {
   }
 
   get collapsed() {
-    return !this.submenu &&
+    return true;
+    // return !this.submenu &&
   }
 
   constructor(
@@ -41,8 +42,8 @@ export class SidenavItemComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    const subMenuKey = this.subMenu && this.subMenu.key;
-    this.state.unregister(this.key, subMenuKey);
+    // const subMenuKey = this.subMenu && this.subMenu.key;
+    // this.state.unregister(this.key, subMenuKey);
   }
 
 }

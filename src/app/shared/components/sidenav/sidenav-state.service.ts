@@ -27,14 +27,14 @@ export class SideNavStateService {
   );
 
   constructor(
-    private routerHandler: SideNavRouterHandler,
+    // private routerHandler: SideNavRouterHandler,
   ) { }
 
   // 初始化选项
   init(handler: SideNavRouterHandlerType, selectedKey: string) {
     this.initHandler(handler);
     if (selectedKey) {
-      this.select(selectedKey);
+      // this.select(selectedKey);
     }
     // route模式
     if (this.handler === 'route') {
@@ -55,13 +55,13 @@ export class SideNavStateService {
   }
 
   // 选择
-  select(itemKey: string) {
-    if (this.handler === 'route') {
-      this.routerHandler.nav(itemKey);
-    } else {
-      this.updateSelectedKey(itemKey);
-    }
-  }
+  // select(itemKey: string) {
+  //   if (this.handler === 'route') {
+  //     this.routerHandler.nav(itemKey);
+  //   } else {
+  //     this.updateSelectedKey(itemKey);
+  //   }
+  // }
 
   isActive(itemKey: string) {
     const selectedKey = this.selectedKeySubject.getValue();

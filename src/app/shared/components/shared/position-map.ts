@@ -114,7 +114,7 @@ class PositionMapPair {
   overlayY: VerticalConnectionPos;
 }
 
-export const POSITION_MAP: {[key: string]: ConnectionPositionPair} = Object.keys(_POSITION_MAP).reduce()
+// export const POSITION_MAP: {[key: string]: ConnectionPositionPair} = Object.keys(_POSITION_MAP).reduce()
 
 export const DEFAULT_MENU_POSITIONS: ConnectionPositionPair[] = [
   // POSITION_MAP

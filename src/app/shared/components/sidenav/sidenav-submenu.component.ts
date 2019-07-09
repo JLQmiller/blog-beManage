@@ -26,7 +26,7 @@ import { SideNavStateService } from './sidenav-state.service';
 export class SidenavSubmenuComponent implements OnInit {
   @HostBinding('class.blog-sidenav-submenu') hostClass = true;
 
-  @HostBinding('class.collapsed')
+  // @HostBinding('class.collapsed')
 
 
   constructor() { }
