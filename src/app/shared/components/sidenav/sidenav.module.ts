@@ -28,6 +28,7 @@ import { IconModule } from '../icon/icon.module';
     IconModule,
   ],
   providers: [
+<<<<<<< HEAD
     // SideNavRouterHandler,
   ],
   exports: [
@@ -35,6 +36,15 @@ import { IconModule } from '../icon/icon.module';
     // SidenavItemGroupComponent,
     // SidenavItemComponent,
     // SidenavSubmenuComponent,
+=======
+    SideNavRouterHandler,
+  ],
+  exports: [
+    SidenavComponent,
+    SidenavItemGroupComponent,
+    SidenavItemComponent,
+    SidenavSubmenuComponent,
+>>>>>>> e2c9341eb0f67ee76b744690eb8b640737545d32
   ]
 })
 export class SideNavModule { }

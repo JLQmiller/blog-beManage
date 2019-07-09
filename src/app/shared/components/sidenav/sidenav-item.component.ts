@@ -10,9 +10,15 @@ import {
   ElementRef,
 } from '@angular/core';
 
+<<<<<<< HEAD
 import { SidenavComponent } from './sidenav.component';
 import { SidenavSubmenuComponent } from './sidenav-submenu.component';
 import { SideNavStateService } from './sidenav-state.service';
+=======
+import {} from './sidenav.component';
+import {} from './sidenav-submenu.component';
+import {} from './sidenav-state.service';
+>>>>>>> e2c9341eb0f67ee76b744690eb8b640737545d32
 
 @Component({
   selector: 'blog-sidenav-item',
