@@ -1,3 +1,26 @@
-<p>
-  popover works!
-</p>
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="overlayOrigin"
+  [cdkConnectedOverlayHasBackdrop]="hasBackdrop"
+  cdkConnectedOverlayBackdropClass="bui-popover-backdrop"
+  (backdropClick)='hide()'
+  (detach)="hide()"
+  (positionChange)="onPositionChange($event)"
+  [cdkConnectedOverlayPositions]="positions"
+  [cdkConnectedOverlayOpen]='visible | async'
+>
+  <div
+    class="blog-popover"
+    [ngClass]="classMap"
+    [@fadeAnimation]="''+visible"
+  >
+    <div class="bui-popover-content">
+      <div class="bui-popover-arrow"></div>
+      <div class="bui-popover-inner">
+        <div class="bui-popover-inner-content">
+          <ng-content></ng-content>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

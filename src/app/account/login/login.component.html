@@ -1,4 +1,4 @@
-<form
+<!-- <form
   #loginForm="ngForm"
   class="login-info"
   [formGroup]="profileForm"
@@ -38,6 +38,12 @@
     type="submit"
   >登陆</button>
 
-</form>
+</form> -->
 
+<button buiPopover [buiPopoverTrigger]="buiPopoverPosition">top</button>
+<blog-popover [placement]="top" #buiPopoverPosition>
+  <div>
+    popover content
+  </div>
+</blog-popover>
 

@@ -4,15 +4,6 @@ import {
   VerticalConnectionPos,
 } from '@angular/cdk/overlay';
 
-function createConnectionPositionPair(pair: PositionMapPair): ConnectionPositionPair {
-  const {
-    originX,
-    originY,
-    overlayX,
-    overlayY,
-  } = pair;
-  return new ConnectionPositionPair({originX, originY}, {overlayX, overlayY});
-}
 
 // 定义可选位置
 export type Placement = 'top' | 'topCenter' | 'topLeft' | 'topRight'
@@ -107,6 +98,16 @@ const _POSITION_MAP: {[key: string]: PositionMapPair} = {
   },
 };
 
+function createConnectionPositionPair(pair: PositionMapPair): ConnectionPositionPair {
+  const {
+    originX,
+    originY,
+    overlayX,
+    overlayY,
+  } = pair;
+  return new ConnectionPositionPair({originX, originY}, {overlayX, overlayY});
+}
+
 class PositionMapPair {
   originX: HorizontalConnectionPos;
   originY: VerticalConnectionPos;
@@ -114,8 +115,21 @@ class PositionMapPair {
   overlayY: VerticalConnectionPos;
 }
 
-// export const POSITION_MAP: {[key: string]: ConnectionPositionPair} = Object.keys(_POSITION_MAP).reduce()
+export const POSITION_MAP: {[key: string]: ConnectionPositionPair} = Object.keys(_POSITION_MAP).reduce((acc, key) => {
+  acc[key] = createConnectionPositionPair(_POSITION_MAP[key]);
+  return acc;
+}, {});
+
+export const DEFAULT_POPOVER_POSITIONS: ConnectionPositionPair[] = [
+  POSITION_MAP['top'], POSITION_MAP['topRight'], POSITION_MAP['topLeft'],
+  POSITION_MAP['bottom'], POSITION_MAP['bottomRight'], POSITION_MAP['bottomLeft'],
+  POSITION_MAP['right'], POSITION_MAP['rightTop'], POSITION_MAP['rightBottom'],
+  POSITION_MAP['left'], POSITION_MAP['leftTop'], POSITION_MAP['leftBottom'],
+];
 
 export const DEFAULT_MENU_POSITIONS: ConnectionPositionPair[] = [
-  // POSITION_MAP
+  POSITION_MAP['rightTop'],
+  POSITION_MAP['rightBottom'],
+  POSITION_MAP['leftTop'],
+  POSITION_MAP['leftBottom'],
 ];

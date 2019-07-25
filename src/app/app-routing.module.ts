@@ -5,6 +5,10 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
+  },
+  {
+    path: 'edit',
+    loadChildren: () => import('./edit/edit.module').then(m => m.EditModule),
   }
 ];
 

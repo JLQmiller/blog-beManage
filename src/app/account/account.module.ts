@@ -7,10 +7,7 @@ import { LoginComponent } from './login/login.component';
 
 import { AccountService } from './account.service';
 
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { BuiModule } from '../shared';
 
 import { MarkdownModule } from 'ngx-markdown';
 
@@ -21,11 +18,8 @@ import { MarkdownModule } from 'ngx-markdown';
     AccountRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
     MarkdownModule.forChild(),
+    BuiModule,
   ],
   providers: [
     AccountService,

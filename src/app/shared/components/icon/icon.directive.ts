@@ -35,11 +35,12 @@ export class IconDirective implements OnChanges {
   constructor(
     private el: ElementRef,
   ) {
+    console.log(this.node);
     this.el.nativeElement.appendChild(this.node);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(`iconChanges: ${changes}`)
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes)
     const {
       blogIcon: iconChange,
       size: sizeChange,
