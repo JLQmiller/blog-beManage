@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 
-import { ApiService } from 'src/app/shared';
+import { ApiService, AuthService } from 'src/app/shared';
 import { User } from './account.models';
 
-@Injectable() // 在account module中注册
+@Injectable()
 export class AccountService {
 
   constructor(
     private api: ApiService,
+    private authService: AuthService,
   ) { }
 
   login(user: User) {
-    console.log('kkkkk');
     return this.api.post('/users/login', user);
   }
 }

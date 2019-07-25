@@ -7,14 +7,14 @@ const accountRoutes: Routes = [
     path: '',
     children: [
       {
-        path: 'login',
+        path: '',
         component: LoginComponent,
       },
       {
-        path: '',
-        redirectTo: 'login',
+        path: '**',
+        redirectTo: '',
         pathMatch: 'full',
-      },
+      }
     ],
   },
 ];

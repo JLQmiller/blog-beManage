@@ -11,6 +11,6 @@ export class EditService {
   ) { }
 
   createArticle() {
-    this.http.post()
+    // this.http.post()
   }
 }

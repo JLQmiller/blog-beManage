@@ -1,49 +1,42 @@
-<!-- <form
-  #loginForm="ngForm"
-  class="login-info"
-  [formGroup]="profileForm"
-  (ngSubmit)="onSubmit()"
->
-  <mat-form-field required>
-    <input
-      matInput
-      name="username"
-      placeholder="用户名"
-      [(ngModel)]='user.username'
-      (ngModelChange)='changed()'
-      appForbiddenName='admin'
-      required
-      formControlName="username"
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <input
-      matInput
-      #password
-      name="password"
-      placeholder="请输入密码"
-      [type]='hide ? "password" : "text"'
-      [(ngModel)]="user.password"
-      (ngModelChange)='changed()'
-      required
-      formControlName="password"
-    >
-    <mat-icon matSuffix (click)="hide=!hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    <mat-error *ngIf='password.touched && password.invalid'>{{getErrorMessage()}}</mat-error>
-  </mat-form-field>
-  <button
-    mat-raised-button
-    color='primary'
-    [disabled]='loginForm.form.invalid'
-    type="submit"
-  >登陆</button>
-
-</form> -->
-
-<button buiPopover [buiPopoverTrigger]="buiPopoverPosition">top</button>
-<blog-popover [placement]="top" #buiPopoverPosition>
-  <div>
-    popover content
-  </div>
-</blog-popover>
-
+<div class="blog-login">
+  <form
+    nz-form
+    [formGroup]="validateForm"
+    class="blog-login-form"
+    (ngSubmit)="login()"
+  >
+    <nz-form-item>
+      <nz-form-control nzErrorTip="请填写用户名">
+        <nz-input-group nzPrefixIcon="user">
+          <input
+            type='text'
+            nz-input
+            formControlName="username"
+            placeholder="Username"
+          >
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="请填写密码">
+        <nz-input-group nzPrefixIcon="lock">
+          <input
+            type="password"
+            nz-input
+            formControlName="password"
+            placeholder="Password"
+          >
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <button
+          nz-button
+          class="blog-lgoin-form-button"
+          [nzType]="'primary'"
+        >Log in</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

@@ -27,4 +27,8 @@ export class EditArticleComponent implements OnInit {
   ngOnInit() {
   }
 
+  createArticle() {
+
+  }
+
 }

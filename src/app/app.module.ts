@@ -4,6 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { LayoutModule } from './layout';
+import { AccountModule } from './account';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -27,6 +30,8 @@ registerLocaleData(zh);
     BrowserAnimationsModule,
     HttpClientModule,
     NgZorroAntdModule,
+    LayoutModule,
+    AccountModule,
     // MarkdownModule.forRoot(),
     SharedModule,
   ],

@@ -1,8 +1,5 @@
-<p>
-  edit-article works!
-</p>
-<svg blogIcon='cancel' size='sm'></svg>
 <form>
   <textarea name="input" [(ngModel)]="markdown"></textarea>
   <markdown name="output" [data]='markdown'></markdown>
 </form>
+<button (click)="createArticle">发送</button>

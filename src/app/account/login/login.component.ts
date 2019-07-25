@@ -2,21 +2,19 @@ import {
   Component,
   OnInit,
   HostBinding,
-  ViewChild,
-  AfterViewInit,
 } from '@angular/core';
 import {
-  FormControl,
-  FormArray,
   FormGroup,
   FormBuilder,
   Validators,
 } from '@angular/forms';
 
-import { Router } from '@angular/router';
+import { AuthService } from '../../shared';
+
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { AccountService } from '../account.service';
-import { User } from '../account.models';
+import { NzMessageService } from 'ng-zorro-antd';
 
 interface Http {
   username: string;
@@ -28,109 +26,50 @@ interface Http {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.sass']
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements OnInit {
   @HostBinding('class.login') hostClass = true;
 
-  @ViewChild('password', { static: true }) password: FormControl;
-
-  hide = true;
-   markdown = `## Markdown __rulez__!
-    ---
-
-    ### Syntax highlight
-    \`\`\`typescript
-    const language = 'typescript';
-    \`\`\`
-
-    ### Lists
-    1. Ordered list
-    2. Another bullet point
-      - Unordered list
-      - Another unordered bullet point
-
-    ### Blockquote
-    > Blockquote to the max`;
-
-  // profileForm = new FormGroup({
-  //   username: new FormControl('jlq'),
-  //   password: new FormControl(''),
-  //   address: new FormGroup({
-  //     street: new FormControl(''),
-  //     city: new FormControl(''),
-  //     state: new FormControl(''),
-  //     zip: new FormControl(''),
-  //   }),
-  // });
-
-  profileForm = this.fb.group({
-    username: ['kk', Validators.required],
-    password: [''],
-    address: this.fb.group({
-      street: [''],
-      city: [''],
-      state: [''],
-      zip: [''],
-    }),
-    aliases: this.fb.array([
-      this.fb.control(''),
-    ]),
-  });
-
-  httpResult: Http;
-
-  user = new User;
+  validateForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private accountService: AccountService,
     private router: Router,
+    private message: NzMessageService,
+    private authService: AuthService,
   ) { }
 
-  get aliases() {
-    return this.profileForm.get('aliases') as FormArray;
-  }
-
-  addAlias() {
-    this.aliases.push(this.fb.control(''));
-  }
-
   ngOnInit() {
+    this.validateForm = this.fb.group({
+      username: [null, [Validators.required]],
+      password: [null, [Validators.required]],
+    })
   }
 
-  ngAfterViewInit() {
-
+  setAuthServiceInfo(username: string, token: string) {
+    this.authService.setAuth(username);
+    this.authService.setToken(token);
   }
 
-  getErrorMessage() {
-    return this.password.hasError('required') ? '需要填写密码' :
-      this.password.hasError('password.invalid') ? '密码格式不正确' : '';
-  }
+  login(): void {
+    const user = {
+      username: this.validateForm.value.username,
+      password: this.validateForm.value.password,
+    }
 
-  changed() {
-    console.log(this.user);
-  }
-
-  updateName() {
-    // this.name.setValue('fxxk');
-  }
-
-  onSubmit() {
-    this.httpResult = {
-      username: this.profileForm.value.username,
-      password: this.profileForm.value.password,
-    };
-    this.user = {
-      username: this.profileForm.value.username,
-      password: this.profileForm.value.password,
-    };
-    // console.log(this.profileForm.value);
-    // console.log(this.user);
-    // this.accountService.login({username:'jlq', password: 'kkkk'});
-    this.accountService.login(this.user)
-    .subscribe(res => {
-      console.log(res);
-      this.router.navigate(['./']);
-    });
+    this.accountService.login(user)
+    .subscribe((loginStatus) => {
+      if (loginStatus && loginStatus.success) {
+        this.setAuthServiceInfo(loginStatus.username, loginStatus.token);
+        this.router.navigate(['/edit']);
+      } else if ( !loginStatus.success) {
+        this.message.error('用户不存在');
+      }
+    }, (err) => {
+      if (err.status === 401) {
+        this.message.error('密码错误，请重试', {nzDuration: 3500, nzAnimate: true});
+      }
+    })
   }
 
 }
