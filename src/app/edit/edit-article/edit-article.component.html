@@ -1,5 +1,21 @@
-<form>
-  <textarea name="input" [(ngModel)]="markdown"></textarea>
-  <markdown name="output" [data]='markdown'></markdown>
-</form>
-<button (click)="createArticle">发送</button>
+<div class="text-area">
+  <div class="text-area-edit">
+    <form>
+      <div style="width: 100%; height: 100%;">
+        <input name="title" [(ngModel)]="title">
+        <textarea name="abstract" style="width: 100%; height: 50%" name="input" [(ngModel)]="abstract"></textarea>
+        <textarea name="markdown" style="width: 100%; height: 50%" [(ngModel)]="markdown"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="text-area-show">
+    <form>
+      <div>文章题目： {{title}}</div>
+      <div>摘要： {{abstract}}</div>
+      <div style="width: 100%; height: 100%;">
+        <markdown name="output" [data]='markdown'></markdown>
+      </div>
+    </form>
+  </div>
+</div>
+<button style="position: fixed" (click)="createArticle()">发送</button>

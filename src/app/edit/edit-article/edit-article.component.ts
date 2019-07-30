@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../shared';
 
 @Component({
   selector: 'blog-edit-article',
@@ -6,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-article.component.sass']
 })
 export class EditArticleComponent implements OnInit {
+  title = '';
   markdown = `## Markdown __rulez__!
   ---
 
@@ -16,18 +19,37 @@ export class EditArticleComponent implements OnInit {
 
   ### Lists
   1. Ordered list
+
+  
   2. Another bullet point
     - Unordered list
     - Another unordered bullet point
 
   ### Blockquote
   > Blockquote to the max`;
-  constructor() { }
+  abstract = "";
+  constructor(
+    private http: HttpClient,
+    private api: ApiService,
+  ) { }
 
   ngOnInit() {
+    this.api.get('/article/fetch').subscribe(v => console.log(v));
   }
 
   createArticle() {
+    console.log(this.title);
+
+    console.log(this.markdown);
+    const article = {
+      title: this.title,
+      abstract: this.abstract,
+      content: this.markdown,
+      publish: true,
+    }
+    this.api.post('/article/create', article).subscribe(v => {
+      console.log(v);
+    })
 
   }
 

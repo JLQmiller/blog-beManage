@@ -14,7 +14,7 @@ export class AuthService {
 
   private logged = false;
 
-  token: string;
+  token: string = '';
 
   constructor() { }
 
@@ -24,6 +24,7 @@ export class AuthService {
   }
 
   setToken(token: string) {
+    console.log(token);
     this._setTokenInCookie(token);
     this.token = `Token ${token}`;
   }

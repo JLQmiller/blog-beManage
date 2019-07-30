@@ -8,7 +8,6 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
 import { AuthService } from '../services';
 
 export class ApiInterceptor implements HttpInterceptor {
@@ -18,9 +17,11 @@ export class ApiInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    req = req.clone({
-      headers: req.headers.set('Authorization', this.authService.token),
-    });
+    if (this.authService.token) {
+      req = req.clone({
+        headers: req.headers.set('Authorization', this.authService.token),
+      });
+    }
 
     return next
       .handle(req)

@@ -48,6 +48,15 @@ export class ApiService {
   //   return observableThrowError(data);
   // }
 
+  get(urlPath: string): Observable<any> {
+    console.log('get');
+
+    return this.http.get(
+      this.makeUrl(urlPath),
+      { headers: this.headers },
+    )
+  }
+
   post(urlPath: string, body: Object = {}): Observable<any> {
     console.log('yellow dead')
     console.log(this.makeUrl(urlPath));
