@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiService } from '../../shared';
+import { HttpModuleNotImport } from '@ant-design/icons-angular';
 
 @Component({
   selector: 'blog-edit-article',
@@ -9,6 +10,7 @@ import { ApiService } from '../../shared';
 })
 export class EditArticleComponent implements OnInit {
   title = '';
+  pic: any;
   markdown = `## Markdown __rulez__!
   ---
 
@@ -20,7 +22,7 @@ export class EditArticleComponent implements OnInit {
   ### Lists
   1. Ordered list
 
-  
+
   2. Another bullet point
     - Unordered list
     - Another unordered bullet point
@@ -32,6 +34,19 @@ export class EditArticleComponent implements OnInit {
     private http: HttpClient,
     private api: ApiService,
   ) { }
+
+  change() {
+    console.log(this.pic);
+  }
+
+  createPictureForm() {
+    const formData = new FormData();
+    formData.append('pic', this.pic);
+    this.api.imagePost('/article/picture', formData)
+    .subscribe(res => {
+      console.log(res);
+    })
+  }
 
   ngOnInit() {
     this.api.get('/article/fetch').subscribe(v => console.log(v));

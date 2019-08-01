@@ -20,6 +20,11 @@ export class ApiService {
     'Content-Type': 'application/json; charset=UTF-8', // 发送端发送的数据类型
   };
 
+  private formDataHttpHeader = {
+    'Accept': 'application/json, text/plain, */*',
+    'Content-Type': 'multipart/form-data; boundary=fuck'
+  }
+
   // 拼凑url字符串
   makeUrl(url) {
     console.log(path.join(environment.apiUrl, url));
@@ -29,6 +34,10 @@ export class ApiService {
   // 构造请求头
   private get headers(): HttpHeaders {
     return new HttpHeaders(this.httpHeader);
+  }
+
+  private get multiHeaders(): HttpHeaders {
+    return new HttpHeaders(this.formDataHttpHeader);
   }
 
   // 处理错误信息
@@ -64,6 +73,14 @@ export class ApiService {
       this.makeUrl(urlPath),
       JSON.stringify(body),
       { headers: this.headers },
+    );
+  }
+
+  imagePost(urlPath: string, body: Object = {}): Observable<any> {
+    return this.http.post(
+      this.makeUrl(urlPath),
+      body,
+      { headers: this.multiHeaders},
     );
   }
 

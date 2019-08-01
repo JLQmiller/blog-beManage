@@ -17,5 +17,7 @@
       </div>
     </form>
   </div>
+<input type="file" accept="image/*" [(ngModel)]="pic" (change)="change()" multiple>
 </div>
-<button style="position: fixed" (click)="createArticle()">发送</button>
+<button style="position: absolute; top: 0;" (click)="createArticle()">发送</button>
+<button style="position: absolute; top: 50px;" (click)="createPictureForm()">图片</button>
